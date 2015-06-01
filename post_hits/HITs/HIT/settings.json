@@ -8,7 +8,7 @@
     "auto_approval_delay":  "5 minutes",
     "reward":               0.50,
     "experimenter":         "Ann Nordmeyer",
-    "server_log_path":      "http://langcog.stanford.edu/cgi-bin/cosub/location.php",
+    "server_log_path":      "Langcog lab log path here",
     "qualifications": {
         "location": "US",
         "approval_percentage": 85

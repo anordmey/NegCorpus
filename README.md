@@ -10,10 +10,12 @@ Creates and posts external HITs on Amazon's Mechanical Turk.  Each HIT gives tur
 ###experiment
 Experiment files for external HIT.  The experiment can be viewed at https://langcog.stanford.edu/expts/NPM/negsearch_mturk/negsearch_mturk.html?filenum=1.  
 
-Each HIT presents data from a different .csv file that lives on the server.  The query string creates a variable, filenum, that indexes which file to get data from.  Each .csv file contains a list of 20 utterances in context; see data_tocode/negcorpus_example.csv for an example of one of these files.  
+Each HIT presents data from a different .csv file that lives on the server.  The query string creates a variable, filenum, that indexes which file to get data from.  Each .csv file contains a list of 20 utterances in context; see data_tocode/negcorpus_example.csv for an example of one of these files.    
 
-negsearch_mturk_filereading.php pulls the data to code from a .csv file that lives on the server.  
-negsearch_mturk_submit.php submits coded data back to server. 
+negsearch_mturk_filereading.php pulls the data to code from a .csv file that lives on the server.    
+negsearch_mturk_submit.php submits coded data back to server.   
+
+Long Ouyang's [mmturkey](https://github.com/longouyang/mmturkey) library handles the collection of demographic information.
 
 
 ###post_hits

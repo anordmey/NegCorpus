@@ -1,0 +1,328 @@
+<html>
+
+<head>
+  <title>Say Whaaat?</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+  <script src="mmturkey.js"></script>
+  <script src="negsearch_utilities.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="initial-scale=1.0" />
+</head>
+
+<body>
+
+  <div class="slide" id="welcome">
+    <img src="images/stanford.png" alt="Stanford University">
+    <p id='logo-text'>Stanford Language and Cognition Lab</p>
+    <p class="block-text">
+      In this experiment, you will see several passages of dialogue betwen a child and a caretaker. Your job is to read these passages and make decisions about how the child is using language. 
+      <br><br>
+      You are welcome to complete multiple HITs of this type.  The instructions are the same for each HIT.
+      <br><br>
+      Please click <em>Start</em> to read instructions and get started!
+    </p>
+    <!-- <p class="block-text">
+      PLEASE NOTE: We are looking for feedback on this HIT!  If you accept this HIT, first you will do the task that we have designed, and at the end we will ask for detailed feedback and suggestions on how to improve the task.  We appreciate your help! 
+    </p> -->
+    <button type="button" id = "startButton" disabled="disabled" onClick="this.blur(); experiment.training(data);">Start</button>
+    <p id="pleaseWait"></p>
+    <p class="block-text" id="legal"> 
+      By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://languagecoglab@gmail.com.">languagecoglab@gmail.com</a>. You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. We have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available here: <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241</a>
+    </p>
+  </div>
+
+  <!--This slide contains the first instructions page-->
+  <div class="slide" id="instructions1">
+    <img src="images/stanford.png" alt="Stanford University">
+    <p id='logo-text'>Stanford Language and Cognition Lab</p>
+    <p class="later-block">
+      In this experiment, you will see examples of conversations that real children had with their caretakers.  In each of these conversations, there is a sentence in which the child uses words like "no" or "not".  These are examples of <i>negation</i>.  We are interested in the different ways that children use negation when they are communicating with other people.
+      <br><br>
+      We are especially interested in two ways that children might use negation: 
+      <br><br>
+      <strong>
+        1. Some negative sentences are used to describe the world around you.  This class of negation includes descriptions, observations, statements, comments, and facts.  For example, a child might say: <em>"this no funny."</em> In this example, the child is using negation to make a comment or a statement about the world.  
+        <br><br>
+        2. Other negative sentences are used as an attempt to change the world around you, or make your desires known to other people.  This class of negation includes refusals, rejections of a request, prohibitions, protests, and expressions of want/need/desire.  For example, a child might say <em>"no do not do that."</em> In this example, the child is using negation to tell another person what to do.  A child might also use this type of negation to express when they do not want some object (e.g. a type of food or a toy) that is being offered to them.
+      </strong>
+      <br><br>
+      There are also two other options for how to classify the child's negation. 
+      <br><br>
+      3. The <em>repeat</em> option is to be used if you can tell from the dialogue that the child is simply mimicking something the caretaker has said, or is repeatedly saying the same statement over and over again. Please mark these as <em>Repeat</em>.
+      <br><br>
+      4. Finally, you'll see an option for <em>unclear/other/don't know</em>. Use this option if you feel that the sentence does not fit any of the above descriptions, or that the child's usage is unclear to the point where you cannot make a judgment, or you aren't sure how to classify the sentence.
+      <br><br>
+      <b>Please note that you may not need to use all four categories during the HIT. You might see a mix of different types of negation, or you might see examples of just one type of negation.  Don't worry if you find yourself choosing the same type of negation on several sentences in a row.  </b>
+    </p>
+
+<!--     <form name="inst1Feedback" id="inst1Feedback">
+      <i>Are these instructions clear?  Please give suggestions for improvement:</i>
+      <br>
+      <textarea id="inst1Q" rows=5 cols=75></textarea>
+    </form> -->
+    <br>
+    <p class="later-block-center">
+      <strong>Please click <em>Next</em> to continue.</strong>
+    </p>
+    <button type="button" id="nextInstructions1" onClick="this.blur();">Next</button>
+  </div>
+
+  <!--This slide contains the second instructions page-->
+  <div class="slide" id="instructions2">
+    <img src="images/stanford.png" alt="Stanford University">
+    <p id='logo-text'>Stanford Language and Cognition Lab</p>
+    <p class="later-block"> 
+      On each page, you will be shown a dialogue between a child and other adults. These dialogues are written like a script, with the speaker identified at the beginning of each line.  
+      <br><br>
+      Statements made by the child will begin with "<em>*CHI: </em>". 
+      <br>
+      Statements by adults will begin with "<em>*MOT: </em>(mother)", "<em>*FAT: </em>(father)", "<em>*GRA: </em>(grandparent)", or "<em>*OPE: </em>(experiment operator)". 
+      <br><br>
+      Each dialogue
+      will have the following format:
+    </p>
+    <ul class="later-block">
+      <li>The first ten lines contain the conversation that occurred before the line where the child used negation.</li>
+      <li>After these first ten lines, there will be a line in <strong>***bold***</strong> that shows the child using a negation, such as "no", "not", or "don't". Your job is to make a decision about this sentence based on the context of the conversation.</li>
+      <li>After the child's negation statement there will be three lines of the conversation that followed the negation, to help make the conversation even more clear.</li>
+    </ul>
+    <p class="later-block">
+      These conversations were taken from recordings between parents and children.  The numbers at the beginning of each line represent the point in the recording where the conversation took place.  These numbers are just placemarkers and are not a part of the conversation, so you can ignore them. 
+    </p>
+<!--     <form name="inst2Feedback" id="inst2Feedback">
+      <i>Are these instructions clear?  Please give suggestions for improvement:</i>
+      <br>
+      <textarea id="inst2Q" rows=5 cols=75></textarea>
+    </form> -->
+    <p class="later-block-center">
+      <strong>Ready to go? We'll give you a chance to practice first.  Hit <em>Start</em> below to get some practice!</strong>
+    </p>
+    <button type="button" id="nextInstructions2" onClick="this.blur();">Start</button>
+  </div>
+
+  <!--This slide contains the first training exercise-->
+  <div class="slide" id="training1">
+    <table align="center" class="wrapper" id="practicetable1Wrapper">
+      <tr>
+        <td id="before">
+          <table class="dialogue" id="practiceTable1">
+            <th id="practice_title1">
+              Please mark the type of negation the child is using... 
+              <br> 
+              Just for practice! 1/2
+            </th>
+            <tr><td class="dark"><p class="boring">1667 *CHI: [unintelligible]</p></td></tr>
+            <tr><td class="light"><p class="boring">1668 *CHI: dogs.</p></td></tr>
+            <tr><td class="dark"><p class="boring">1669 *CHI: dog.</p></td></tr>
+            <tr><td class="light"><p class="boring">1670 *CHI: (.) silly.</p></td></tr>
+            <tr><td class="dark"><p class="boring">1671 *CHI: silly.</p></td></tr>
+            <tr><td class="light"><p class="boring">1672 *MOT: did you pick em [ them] up?</p></td></tr>
+            <tr><td class="dark"><p class="boring">1673 *CHI: no.</p></td></tr>
+            <tr><td class="light"><p class="boring">1674 *MOT: why?</p></td></tr>
+            <tr><td class="dark"><p class="boring">1675 *CHI: no.</p></td></tr>
+            <tr><td class="light"><p class="boring">1676 *MOT: please.</p></td></tr>
+            <tr><td class="dark"><p id="utterancePractice">******<strong>1677 *CHI: no.</strong>******</p></td></tr>
+            <tr><td class="light"><p class="boring">1678 *MOT: why?</p></td></tr>
+            <tr><td class="dark"><p class="boring">1679 *CHI: no.</p></td></tr>
+            <tr><td class="light"><p class="boring">1680 *MOT: do it.</p></td></tr>
+          </table>
+        </td>
+        <td align="center">
+          <div id="radioPractice1">
+            <input type="radio" id="assertivePractice1" name="radioPractice1" value="Statement"><label for="assertivePractice1" > <b>Type 1</b> <br> e.g. descriptions, observations, statements, comments, facts</label>
+            <br>
+            <input type="radio" id="directivePractice1" name="radioPractice1" value="Directive"><label for="directivePractice1" ><b>Type 2</b> <br> e.g. refusals, rejections of requests, prohibitions, protests, expressions of want/need/desire</label>
+            <br>
+            <input type="radio" id="repeatPractice1" name="radioPractice1" value="Repeat"><label for="repeatPractice1" > <b>Repeat</b></label>
+            <br>
+            <input type="radio" id="unclearPractice1" name="radioPractice1" value="Unclear/Other"><label for="unclearPractice1" ><b>Unclear/Other</b></label>
+            <br>
+          </div>
+          <div class="nextButton"> <button id="nextTraining1" type="button" onClick="this.blur();"> Next </button></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!--This slide contains the second training exercise-->
+  <div class="slide" id="training2">
+    <table align="center" class="wrapper" id="practicetable2Wrapper">
+      <tr>
+        <td id="before">
+          <table class="dialogue" id="practiceTable2">
+            <th id="practice_title2">
+              Please mark the type of negation the child is using... 
+              <br>  
+              Just for practice! 2/2
+            </th>
+            <tr><td class="dark"><p class="boring">469 *CHI: is the end.</p></td></tr>
+            <tr><td class="light"><p class="boring">470 *MOT: that is the end.</p></td></tr>
+            <tr><td class="dark"><p class="boring">471 *CHI: that is the end.</p></td></tr>
+            <tr><td class="light"><p class="boring">472 *CHI: let's read another story.</p></td></tr>
+            <tr><td class="dark"><p class="boring">473 *MOT: [unintelligible]</p></td></tr>
+            <tr><td class="light"><p class="boring">474 *CHI: how (a)bout let's read two?</p></td></tr>
+            <tr><td class="dark"><p class="boring">475 *MOT: how about that one?</p></td></tr>
+            <tr><td class="light"><p class="boring">476 *CHI: [unintelligible]</p></td></tr>
+            <tr><td class="dark"><p class="boring">477 *MOT: what's in that green one on the floor behind you?</p></td></tr>
+            <tr><td class="light"><p class="boring">478 *MOT: yeah that one.</p></td></tr>
+            <tr><td class="dark"><p id="utterancePractice">******<strong>479 *CHI: this one is not good.</strong>******</p></td></tr>
+            <tr><td class="light"><p class="boring">480 *MOT: this one's [ one is] not good?</p></td></tr>
+            <tr><td class="dark"><p class="boring">481 *CHI: yeah that's the one we want.</p></td></tr>
+            <tr><td class="light"><p class="boring">482 *MOT: should we look at the green one instead?</p></td></tr>
+          </table>
+        </td>
+        <td align="center">
+          <div id="radioPractice2">
+            <input type="radio" id="assertivePractice2" name="radioPractice2" value="Statement"><label for="assertivePractice2" ><b>Type 1</b> <br> e.g. descriptions, observations, statements, comments, facts</label>
+            <br>
+            <input type="radio" id="directivePractice2" name="radioPractice2" value="Directive"><label for="directivePractice2" ><b>Type 2</b> <br> e.g. refusals, rejections of requests, prohibitions, protests, expressions of want/need/desire</label>
+            <br>
+            <input type="radio" id="repeatPractice2" name="radioPractice2" value="Repeat"><label for="repeatPractice2" ><b>Repeat</b></label>
+            <br>
+            <input type="radio" id="unclearPractice2" name="radioPractice2" value="Unclear/Other"><label for="unclearPractice2" ><b>Unclear/Other</b></label>
+            <br>
+          </div>
+          <div class="nextButton"> <button id="nextTraining2" type="button" onClick="this.blur();">Next</button></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!--This slide tells the user that the experiment is about to begin...-->
+  <div class="slide" id="ready">
+    <p>Ready? Here we go!</p>
+  </div>
+
+  <!--This slide contains the stage div which cycles through each trial of the MTurk Study-->
+  <div class="slide" id="stage">
+    <table align="center" class="wrapper" id="realTableWrapper">
+      <tr>
+        <td id="before">
+          <table class="dialogue" id="realTable">
+            <th id="title"></th>
+            <tr><td class="dark"><p class="boring" id="before_1"> </p></td></tr>
+            <tr><td class="light"><p class="boring" id="before_2"> </p></td></tr>
+            <tr><td class="dark"><p class="boring" id="before_3"> </p></td></tr>
+            <tr><td class="light"><p class="boring" id="before_4"> </p></td></tr>
+            <tr><td class="dark"><p class="boring" id="before_5"> </p></td></tr>
+            <tr><td class="light"><p class="boring" id="before_6"> </p></td></tr>
+            <tr><td class="dark"><p class="boring" id="before_7"> </p></td></tr>
+            <tr><td class="light"><p class="boring" id="before_8"> </p></td></tr>
+            <tr><td class="dark"><p class="boring" id="before_9"> </p></td></tr>
+            <tr><td class="light"><p class="boring" id="before_10"> </p></td></tr>
+            <tr><td class="dark"><strong><p id="utterance"> </p></strong></td></tr>
+            <tr><td class="light"><p class="boring" id="after_1"> </p></td></tr>
+            <tr><td class="dark"><p class="boring" id="after_2"> </p></td></tr>
+            <tr><td class="light"><p class="boring" id="after_3"> </p></td></tr>
+          </table>
+        </td>
+        <td align="center">
+          <div id="radioNext">
+            <input type="radio" id="assertive" name="radioNext" value="Statement"><label for="assertive" ><b>Type 1 </b><br> e.g. descriptions, observations, statements, comments, facts</label>
+            <br>
+            <input type="radio" id="directive" name="radioNext" value="Directive"><label for="directive" ><b>Type 2 </b><br> e.g. refusals, rejections of requests, prohibitions, protests, expressions of want/need/desire</label>
+            <br>
+            <input type="radio" id="repeat" name="radioNext" value="Repeat"><label for="repeat" ><b>Repeat</b></label>
+            <br>
+            <input type="radio" id="unclear" name="radioNext" value="Unclear/Other"><label for="unclear" ><b>Unclear/Other</b></label>
+            <br>
+          </div>
+          <div class="nextButton"><button id="next" type="button" onClick="this.blur();">Next</button></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+<!--   <div class="slide" id="feedbackIntro">
+    <br>
+    <br>
+    <p class="later-block"> 
+      Next, we'd like to get some feedback from you about this HIT.  First we will show you the instructions again.  Please let us know if you have any suggestions that would make the instructions clearer or more helpful.  After you have given us feedback on the instructions, we will ask for some feedback about other aspects of the HIT.  
+    </p>
+    <br>
+    <center>
+      <button type="button" id="feedbackStart">Next</button>
+    </center>
+  </div>
+
+  <div class="slide" id="feedbackQs">
+    <p><b> Help us out by giving feedback on this HIT! </b> </p>
+    <br>
+    <br>
+    <form class="feedbackQuestions" name="workflowFeedback" id="workflowFeedback">
+      <b>How was your experience as a worker on this HIT?  Is there anything we could do to improve the workflow of this HIT (e.g. formatting changes, any lags or errors, etc.)?</b>
+      <br>
+      <textarea id="workflowQ" rows=5 cols=75></textarea>
+    </form>
+    <br>
+    <form class="feedbackQuestions" name="timing" id="timing">
+      <b>Assuming you had the option to do multiple HITs like this in a row, how long would you want each task to be?</b> &nbsp;&nbsp;
+      <br>
+      <input type="radio" name="timingButton" value="Shorter" /> I would like each task to be shorter (i.e. tag fewer utterances per HIT) 
+      <br>
+      <input type="radio" name="timingButton" value="Perfect" /> This felt about right. 
+      <br>
+      <input type="radio" name="timingButton" value="Longer" /> I would like each task to be longer (i.e. tag more utterances per HIT)
+    </form>
+    <br>
+    <form class="feedbackQuestions" name="payment" id="payment">
+      Based on the time and effort required to do this task (i.e. tagging 20 child utterances, which is what you did here), how much do you think would be reasonable to pay workers to do this task in the future (assuming that they would only be completing the task, and not giving additional feedback)?&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" id="paymentQ"/>
+    </form>
+    <form class="feedbackQuestions" name="browser" id="browser">
+      What browser are you using?&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" id="browserQ"/>
+    </form>
+    <button type="button" id="feedbackButton">Submit Feedback</button>
+  </div> -->
+
+  <div class="slide" id="askInfo">
+    <p><b> Please answer a few questions about yourself. </b> </p>
+    <br>
+    <form name="gender" id="gender">
+      <b>Gender:</b> &nbsp;&nbsp;
+      <input type="radio" name="genderButton" value="M" />Male &nbsp;&nbsp;
+      <input type="radio" name="genderButton" value="F" />Female &nbsp;&nbsp;
+      <input type="radio" name="genderButton" value="Decline" />Decline to answer
+    </form>
+    <br>
+    <form name="age" id="age">
+      <b>Age range:</b> &nbsp;&nbsp;
+      <select name="ageRange" id="ageRange">
+        <option value=17>Under 18</option>
+        <option value=25>18-25</option>
+        <option value=35>26-35</option>
+        <option value=45>36-45</option>
+        <option value=55>46-55</option>
+        <option value=65>56-65</option>
+        <option value=66>Above 66</option>
+        <option value=NA>Decline to answer</option>
+      </select>
+    </form>
+    <br>
+    <form name="language" id="language">
+      <b>What is your native language? </b>&nbsp;&nbsp;
+      <input type="text" id="nativeLanguage"/>
+    </form>
+    <br>
+    <br>
+    <form name="comment" id="comments">
+      <b>Please leave any comments or suggestions regarding this HIT:</b>
+      <br>
+      <textarea id="commentQ" rows=5 cols=75></textarea>
+    </form>
+    <button type="button" id="endButton">Submit</button>
+  </div>
+
+  <div class="slide" id="finish">
+    <img src="images/stanford.png" alt="Stanford University">
+    <p id='logo-text'>Stanford Language and Cognition Lab</p>
+    <p class="block-text">You're finished - thanks for participating! Please wait while we submit to Mechanical Turk...</p>
+  </div>
+
+  <script src="negsearch_mturk.js"></script> 
+  
+</body>
+</html>

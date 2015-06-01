@@ -1,0 +1,16 @@
+{
+    "title":               "What is this child saying?",
+    "description":         "Read conversations between a child and a caregiver and tell us what the child is saying.  You may do more than one of this HIT; instructions are identical for each HIT.",
+    "keywords":            "psychology, language, children",
+    "url":                 "https://langcog.stanford.edu/expts/NPM/negsearch_mturk/negsearch_mturk.html",
+    "frame_height":         600,
+    "assignment_duration":  "1 hour",
+    "auto_approval_delay":  "5 minutes",
+    "reward":               0.50,
+    "experimenter":         "Ann Nordmeyer",
+    "server_log_path":      "http://langcog.stanford.edu/cgi-bin/cosub/location.php",
+    "qualifications": {
+        "location": "US",
+        "approval_percentage": 85
+    }
+}
